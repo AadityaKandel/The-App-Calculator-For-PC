@@ -1,18 +1,11 @@
 from tkinter import *
-import tkinter.messagebox as tmsg
 
 root = Tk()
+root.minsize(550,700)
+root.maxsize(550,700)
 root.title('Calculator')
-root.geometry('600x640')
-root.maxsize(600,640)
-root.minsize(600,640)
 
-# Giving Global Variable
-qqq = 999999999999999999999999999
-
-# Deining THem
-def error():
-	tmsg.showinfo('Warning',"0 Mustn't Be First")
+# Defining Them
 def one():
 	calc.set((calc.get())+'1')
 def two():
@@ -31,77 +24,80 @@ def eight():
 	calc.set((calc.get())+'8')
 def nine():
 	calc.set((calc.get())+'9')
-def zero():
+def ten():
 	calc.set((calc.get())+'0')
-def addition():
-	calc.set((calc.get())+'+')
-def subtract():
-	calc.set((calc.get())+'-')
-def division():
-	calc.set((calc.get())+'/')
-def equal():
-	if ((calc.get()) == str(qqq)):
-		calc.set('Maximum Number Reached..')
-	else:
-		try:
-			a = eval((calc.get()))
-			calc.set(a)
-		except:
-			tmsg.showinfo('Warning',"0 Mustn't Be First\n\n              OR\n\n Number Error Occured")
-def clear():
+def add():
+	root.title('Addition')
+	first.set((calc.get()))
 	calc.set('')
+	second.set('+')
+def sub():
+	root.title('Subtraction')
+	first.set((calc.get()))
+	calc.set('')
+	second.set('-')
+def mul():
+	root.title('Multiplication')
+	first.set((calc.get()))
+	calc.set('')
+	second.set('*')
+def equall():
+	root.title('Calculator')
+	third.set((first.get())+(second.get())+(calc.get()))
+	y = eval(third.get())
+	calc.set(y)
+def div():
+	root.title('Division')
+	first.set((calc.get()))
+	calc.set('')
+	second.set('/')
+def square():
+	gh = eval(calc.get())
+	hh = eval(calc.get())
+	fh = (gh*hh)
+	calc.set(fh)
+def cube():
+	ghh = eval(calc.get())
+	hhh = eval(calc.get())
+	hhhh = eval(calc.get())
+	ff = (ghh*hhh*hhhh)
+	calc.set(ff)
 def c():
-	try:
-		a = eval((calc.get()))
-		b = eval((calc.get()))
-		c = a*b
-		calc.set(c)
-	except:
-		error()
-def cc():
-	try:
-		a = eval((calc.get()))
-		b = eval((calc.get()))
-		c = eval((calc.get()))
-		c = a*b*c
-		calc.set(c)
-	except:
-		error()
-def multiplication():
-	calc.set((calc.get())+'*')
+	calc.set('')
 
+f1 = Frame(borderwidth = 10,bg = "black")
+f2 = Frame(borderwidth = 10,bg = "black")
+f3 = Frame(borderwidth = 10,bg = "black")
+f4 = Frame(borderwidth = 10,bg = "black")
+f5 = Frame(borderwidth = 10,bg = "black")
+f6 = Frame(borderwidth = 10,bg = "black")
 
-# Making The ENtry Widget
+# Creating Entry Widget
 calc = StringVar()
+first = StringVar()
+second = StringVar()
+third = StringVar()
+Entry(textvariable = calc,width = 90,font = "comicsansms 30 bold",justify = "center").pack()
 
-# Making Frames
-f1 = Frame(borderwidth = 10, bg = 'black')
-f2 = Frame(borderwidth = 10, bg = 'black')
-f3 = Frame(borderwidth = 10, bg = 'black')
-f4 = Frame(borderwidth = 10, bg = 'black')
-f5 = Frame(borderwidth = 10, bg = 'black')
-f6 = Frame(borderwidth = 10, bg = 'black')
+Button(f1,text = "1",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = one).pack(side = LEFT)
+Button(f1,text = "2",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = two).pack(side = LEFT)
+Button(f1,text = "3",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = three).pack(side = LEFT)
+Button(f2,text = "4",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = four).pack(side = LEFT)
+Button(f2,text = "5",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = five).pack(side = LEFT)
+Button(f2,text = "6",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = six).pack(side = LEFT)
+Button(f3,text = "7",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = seven).pack(side = LEFT)
+Button(f3,text = "8",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = eight).pack(side = LEFT)
+Button(f3,text = "9",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = nine).pack(side = LEFT)
+Button(f4,text = "0",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = ten).pack(side = LEFT)
+Button(f4,text = "+",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = add).pack(side = LEFT)
+Button(f4,text = "-",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = sub).pack(side = LEFT)
+Button(f5,text = "*",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = mul).pack(side = LEFT)
+Button(f5,text = "/",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = div).pack(side = LEFT)
+Button(f5,text = "=",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = equall).pack(side = LEFT)
+Button(f6,text = "^2",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = square).pack(side = LEFT)
+Button(f6,text = "^3",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = cube).pack(side = LEFT)
+Button(f6,text = "Clear All",padx = 6,pady = 18,width = 10,font = "comicsansms 20 bold",bg = "black",fg = "white",command = c).pack(side = LEFT)
 
-Entry(textvariable = calc,font = "comicsansms 30 bold",width = 100,justify = 'center',fg = "black",bg = "white").pack()
-
-Button(f1,text = "1",pady = 19,width = 6,fg = "white",bg = "black",command = one,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f1,text = "2",pady = 19,width = 6,fg = "white",bg = "black",command = two,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f1,text = "3",pady = 19,width = 6,fg = "white",bg = "black",command = three,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f2,text = "4",pady = 19,width = 6,fg = "white",bg = "black",command = four,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f2,text = "5",pady = 19,width = 6,fg = "white",bg = "black",command = five,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f2,text = "6",pady = 19,width = 6,fg = "white",bg = "black",command = six,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f3,text = "7",pady = 19,width = 6,fg = "white",bg = "black",command = seven,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f3,text = "8",pady = 19,width = 6,fg = "white",bg = "black",command = eight,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f3,text = "9",pady = 19,width = 6,fg = "white",bg = "black",command = nine,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f4,text = "0",pady = 19,width = 6,fg = "white",bg = "black",command = zero,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f4,text = "*",pady = 19,width = 6,fg = "white",bg = "black",command = multiplication,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f4,text = "/",pady = 19,width = 6,fg = "white",bg = "black",command = division,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f5,text = "+",pady = 19,width = 6,fg = "white",bg = "black",command = addition,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f5,text = "-",pady = 19,width = 6,fg = "white",bg = "black",command = subtract,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f5,text = "=",pady = 19,width = 6,fg = "white",bg = "black",command = equal,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f6,text = "Clear All",pady = 19,width = 9,fg = "white",bg = "black",command = clear,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f6,text = "^2",pady = 19,width = 6,fg = "white",bg = "black",command = c,font = "comicsansms 16 bold").pack(side = LEFT)
-Button(f6,text = "^3",pady = 19,width = 6,fg = "white",bg = "black",command = cc,font = "comicsansms 16 bold").pack(side = LEFT)
 f1.pack()
 f2.pack()
 f3.pack()
